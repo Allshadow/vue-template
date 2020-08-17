@@ -6,7 +6,11 @@ Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/',
+    path: '*',
+    redirect: '/home'
+  },
+  {
+    path: '/home',
     name: 'Home',
     component: Home
   },
@@ -23,6 +27,15 @@ const routes = [
 const router = new VueRouter({
   mode: 'hash',
   routes
+})
+
+router.beforeEach((to, from, next) =>{
+  console.log('to', to);
+  console.log('from', from);
+  // if (to.path !== '/login' && !localStorage.token) {
+  //   return next('/login')
+  // }
+  next();
 })
 
 export default router

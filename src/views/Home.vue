@@ -1,18 +1,33 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <el-button type="primary" @click="toCount">点击加count</el-button>
+    <el-button>{{count}}</el-button>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
 
+  import {mapState} from 'vuex'
 export default {
   name: 'Home',
   components: {
-    HelloWorld
+
+  },
+  created() {
+
+  },
+  computed:{
+    // count: this.$store.state.count
+    // count(){
+    //   return this.$store.state.count
+    // }
+
+    ...mapState(['count'])
+  },
+  methods:{
+    toCount(){
+      this.$store.commit('changCount', 5)
+    }
   }
 }
 </script>
